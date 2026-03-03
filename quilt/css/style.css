@@ -1,0 +1,123 @@
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #000; /* Black background */
+}
+
+/* Grid layout */
+.quilt {
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
+  gap: 12px;
+  padding: 14px;
+}
+
+/* Base tile */
+.tile {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+/* Neon pink + glow corner */
+.t1 {
+  background: #ff2d95;
+}
+.t1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40%;
+  height: 40%;
+  background: rgba(255,255,255,0.15);
+}
+
+/* Electric blue + dot */
+.t2 {
+  background: #00c2ff;
+}
+.t2::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+}
+
+/* Cyan stripes */
+.t3 {
+  background: repeating-linear-gradient(
+    45deg,
+    #00f5d4 0 14px,
+    #111 14px 28px
+  );
+}
+
+/* Purple with inner frame */
+.t4 {
+  background: #9b5de5;
+  border-radius: 10px;
+}
+.t4::before {
+  content: "";
+  position: absolute;
+  inset: 15%;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 8px;
+}
+
+/* Teal / dark split */
+.t5 {
+  background: linear-gradient(135deg, #00bbf9 0 50%, #111 50% 100%);
+}
+
+/* Radial neon target */
+.t6 {
+  background:
+    radial-gradient(circle at center, rgba(0,255,200,0.6) 0 15%, transparent 16% 100%),
+    radial-gradient(circle at center, #ff006e 0 55%, #111 56% 100%);
+}
+
+/* Dark tile with glowing cross */
+.t7 {
+  background: #111;
+}
+.t7::before,
+.t7::after {
+  content: "";
+  position: absolute;
+  background: rgba(0,255,255,0.25);
+}
+.t7::before {
+  width: 20%;
+  height: 100%;
+  left: 40%;
+}
+.t7::after {
+  width: 100%;
+  height: 20%;
+  top: 40%;
+}
+
+
+@media (max-width: 520px) {
+  .quilt {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+  }
+}
