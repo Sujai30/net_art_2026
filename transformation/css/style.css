@@ -1,0 +1,459 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  background: #97d0ff;
+}
+
+button {
+  font: inherit;
+}
+
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,0.55), transparent 16%),
+    linear-gradient(180deg, #86cbff 0%, #b9e2ff 44%, #f0cf98 100%);
+  transition: background 1s ease;
+}
+
+.sky-noise,
+.sky-noise::before,
+.sky-noise::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sky-noise {
+  opacity: 0.16;
+  background-image:
+    repeating-linear-gradient(113deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 23px),
+    repeating-linear-gradient(13deg, rgba(0,0,0,0.035) 0 1px, transparent 1px 19px);
+  mix-blend-mode: soft-light;
+}
+
+.sky-noise::before {
+  content: "";
+  inset: -3%;
+  background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.08), transparent 34%);
+}
+
+.sky-noise::after {
+  content: "";
+  inset: auto 0 0 0;
+  height: 24%;
+  background: linear-gradient(180deg, transparent, rgba(146, 101, 56, 0.1));
+}
+
+.sun,
+.moon {
+  position: absolute;
+  top: 9vh;
+  right: 11vw;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 46% 54% 49% 51% / 53% 42% 58% 47%;
+  transition: transform 1s ease, opacity 0.9s ease, box-shadow 1s ease, background 1s ease;
+}
+
+.sun {
+  background: #ffd266;
+  box-shadow: 0 0 50px rgba(255, 204, 92, 0.45);
+}
+
+.moon {
+  background: #f4f2e7;
+  opacity: 0;
+  transform: translateY(-2rem) scale(0.8) rotate(-12deg);
+  box-shadow: 0 0 32px rgba(255, 255, 255, 0.15);
+}
+
+.cloud {
+  position: absolute;
+  height: 3.2rem;
+  background: rgba(255,255,255,0.78);
+  border-radius: 42% 58% 55% 45% / 53% 42% 58% 47%;
+  filter: blur(0.3px);
+  transition: opacity 0.8s ease, transform 1s ease;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+}
+
+.cloud::before {
+  width: 3.4rem;
+  height: 2.7rem;
+  top: -1rem;
+  left: 1rem;
+  border-radius: 56% 44% 47% 53% / 48% 61% 39% 52%;
+}
+
+.cloud::after {
+  width: 4.4rem;
+  height: 3rem;
+  top: -1.1rem;
+  right: 1rem;
+  border-radius: 39% 61% 42% 58% / 50% 37% 63% 50%;
+}
+
+.cloud-a {
+  width: 10rem;
+  top: 16vh;
+  left: 8vw;
+  transform: rotate(-3deg);
+}
+
+.cloud-b {
+  width: 13rem;
+  top: 24vh;
+  left: 37vw;
+  transform: rotate(2deg);
+}
+
+.cloud-c {
+  width: 11rem;
+  top: 11vh;
+  left: 60vw;
+  transform: rotate(-5deg);
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  width: 0.38rem;
+  height: 0.38rem;
+  background: #fff8d1;
+  clip-path: polygon(50% 0%, 62% 36%, 100% 50%, 62% 64%, 50% 100%, 38% 64%, 0% 50%, 38% 36%);
+  opacity: 0;
+  transform: scale(0.4) rotate(0deg);
+  box-shadow: 0 0 10px rgba(255, 248, 209, 0.3);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.s1 { top: 12%; left: 12%; }
+.s2 { top: 18%; left: 25%; }
+.s3 { top: 10%; left: 41%; }
+.s4 { top: 28%; left: 57%; }
+.s5 { top: 14%; left: 70%; }
+.s6 { top: 24%; left: 82%; }
+.s7 { top: 34%; left: 16%; }
+.s8 { top: 31%; left: 34%; }
+.s9 { top: 20%; left: 49%; }
+.s10 { top: 9%; left: 60%; }
+.s11 { top: 36%; left: 73%; }
+.s12 { top: 27%; left: 90%; }
+
+.horizon {
+  position: absolute;
+  inset: auto 0 17vh 0;
+  height: 44vh;
+}
+
+.back-hills {
+  position: absolute;
+  inset: auto -2vw 0 -2vw;
+  height: 36%;
+  background: #7e996f;
+  clip-path: polygon(0 74%, 8% 64%, 18% 68%, 29% 55%, 37% 60%, 49% 50%, 60% 59%, 72% 49%, 81% 58%, 90% 52%, 100% 67%, 100% 100%, 0 100%);
+  transition: background 1s ease;
+}
+
+.city {
+  position: absolute;
+  inset: 0;
+}
+
+.city span {
+  position: absolute;
+  bottom: 0;
+  background: #4c6280;
+  transition: background 1s ease, transform 0.8s ease, box-shadow 1s ease;
+}
+
+.city-back span {
+  background: #607692;
+  opacity: 0.75;
+}
+
+.b1 { left: 3%; width: 9%; height: 26%; clip-path: polygon(0 100%, 0 21%, 17% 11%, 24% 17%, 34% 8%, 46% 15%, 60% 0, 74% 13%, 100% 10%, 100% 100%); }
+.b2 { left: 18%; width: 14%; height: 32%; clip-path: polygon(0 100%, 0 14%, 11% 18%, 20% 7%, 35% 16%, 47% 4%, 64% 12%, 79% 0, 100% 10%, 100% 100%); }
+.b3 { left: 39%; width: 11%; height: 22%; clip-path: polygon(0 100%, 0 18%, 15% 13%, 28% 0, 43% 15%, 57% 7%, 72% 17%, 88% 9%, 100% 15%, 100% 100%); }
+.b4 { left: 60%; width: 17%; height: 29%; clip-path: polygon(0 100%, 0 20%, 8% 6%, 17% 15%, 31% 2%, 48% 11%, 61% 0, 79% 13%, 100% 9%, 100% 100%); }
+.b5 { left: 80%; width: 13%; height: 25%; clip-path: polygon(0 100%, 0 16%, 16% 8%, 34% 16%, 47% 4%, 65% 12%, 87% 0, 100% 9%, 100% 100%); }
+
+.f1 { left: 8%; width: 18%; height: 42%; clip-path: polygon(0 100%, 0 14%, 11% 7%, 18% 15%, 28% 4%, 39% 18%, 48% 0, 62% 12%, 76% 5%, 87% 18%, 100% 10%, 100% 100%); }
+.f2 { left: 31%; width: 12%; height: 37%; clip-path: polygon(0 100%, 0 18%, 10% 6%, 22% 13%, 36% 0, 48% 15%, 62% 4%, 79% 16%, 100% 8%, 100% 100%); }
+.f3 { left: 63%; width: 15%; height: 48%; clip-path: polygon(0 100%, 0 16%, 10% 4%, 17% 11%, 30% 0, 43% 14%, 55% 6%, 68% 0, 84% 15%, 100% 10%, 100% 100%); }
+.f4 { left: 81%; width: 12%; height: 34%; clip-path: polygon(0 100%, 0 22%, 13% 7%, 28% 17%, 39% 5%, 58% 13%, 77% 0, 100% 14%, 100% 100%); }
+
+.city-front span::before {
+  content: "";
+  position: absolute;
+  inset: 14% 18% 10% 14%;
+  background:
+    linear-gradient(90deg,
+      transparent 0 12%, rgba(0,0,0,0.14) 12% 17%, transparent 17% 40%,
+      rgba(0,0,0,0.14) 40% 45%, transparent 45% 68%,
+      rgba(0,0,0,0.14) 68% 73%, transparent 73% 100%),
+    linear-gradient(180deg,
+      transparent 0 12%, rgba(0,0,0,0.16) 12% 17%, transparent 17% 40%,
+      rgba(0,0,0,0.16) 40% 45%, transparent 45% 68%,
+      rgba(0,0,0,0.16) 68% 73%, transparent 73% 100%);
+  opacity: 0.45;
+}
+
+.lamp {
+  position: absolute;
+  left: 51%;
+  bottom: 13vh;
+  width: 8rem;
+  height: 58vh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 4;
+}
+
+.lamp-pole,
+.lamp-arm,
+.lamp-head,
+.lamp-glow,
+.lamp-hint {
+  position: absolute;
+  display: block;
+}
+
+.lamp-pole {
+  left: 3.6rem;
+  bottom: 0;
+  width: 0.55rem;
+  height: 100%;
+  background: linear-gradient(180deg, #4b4d56, #24262f);
+  clip-path: polygon(28% 0, 75% 0, 100% 100%, 0 100%);
+}
+
+.lamp-arm {
+  top: 18%;
+  left: 3.55rem;
+  width: 2.5rem;
+  height: 0.45rem;
+  background: #353842;
+  transform: rotate(-19deg);
+  transform-origin: left center;
+  clip-path: polygon(0 20%, 100% 0, 88% 100%, 0 80%);
+}
+
+.lamp-head {
+  top: 13.6%;
+  left: 5rem;
+  width: 2.2rem;
+  height: 1.45rem;
+  background: #2a2e37;
+  clip-path: polygon(5% 0, 100% 7%, 87% 100%, 0 85%);
+  transition: transform 0.35s ease, background 0.8s ease;
+}
+
+.lamp-glow {
+  top: 12.5%;
+  left: 2.1rem;
+  width: 7rem;
+  height: 7rem;
+  background: radial-gradient(circle, rgba(255, 235, 149, 0.7) 0%, rgba(255, 235, 149, 0.22) 42%, rgba(255, 235, 149, 0) 72%);
+  opacity: 0.18;
+  transform: scale(0.62);
+  transition: opacity 0.8s ease, transform 1s ease;
+  mix-blend-mode: screen;
+}
+
+.lamp-hint {
+  top: 11.9%;
+  left: 5.55rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: rgba(255, 244, 183, 0.75);
+  clip-path: polygon(50% 0%, 60% 36%, 100% 50%, 60% 64%, 50% 100%, 40% 64%, 0% 50%, 40% 36%);
+  animation: nudge 2.2s ease-in-out infinite;
+  transition: opacity 0.5s ease;
+}
+
+.lamp:hover .lamp-head,
+.lamp:focus-visible .lamp-head {
+  transform: rotate(-4deg) translateY(-0.15rem);
+}
+
+.lamp:focus-visible {
+  outline: 2px dashed rgba(255,255,255,0.85);
+  outline-offset: 0.45rem;
+}
+
+.road {
+  position: absolute;
+  inset: auto -3vw 0 -3vw;
+  height: 18vh;
+  background: #343944;
+  clip-path: polygon(0 36%, 17% 28%, 35% 31%, 53% 22%, 74% 27%, 100% 19%, 100% 100%, 0 100%);
+  transition: background 1s ease;
+}
+
+.road-edge {
+  position: absolute;
+  inset: auto -3vw 15.5vh -3vw;
+  height: 1.3vh;
+  background: rgba(243, 217, 155, 0.85);
+  clip-path: polygon(0 60%, 14% 30%, 30% 45%, 49% 15%, 70% 36%, 100% 0, 100% 100%, 0 100%);
+  transition: opacity 0.8s ease, background 1s ease;
+}
+
+body.night {
+  background: #091324;
+}
+
+body.night .scene {
+  background:
+    radial-gradient(circle at 82% 12%, rgba(255,255,255,0.09), transparent 18%),
+    linear-gradient(180deg, #07101d 0%, #10203c 39%, #1b1530 100%);
+}
+
+body.night .sun {
+  opacity: 0;
+  transform: translateY(2rem) scale(0.65) rotate(16deg);
+  box-shadow: 0 0 20px rgba(255, 204, 92, 0.16);
+}
+
+body.night .moon {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(8deg);
+  box-shadow: 0 0 38px rgba(255,255,245,0.24);
+}
+
+body.night .cloud {
+  opacity: 0.12;
+  transform: translateY(0.7rem) scale(1.05);
+}
+
+body.night .star {
+  opacity: 1;
+  transform: scale(1.15) rotate(35deg);
+  animation: twinkle 2.8s ease-in-out infinite alternate;
+}
+
+body.night .s2 { animation-delay: 0.25s; }
+body.night .s4 { animation-delay: 0.55s; }
+body.night .s6 { animation-delay: 0.8s; }
+body.night .s8 { animation-delay: 0.35s; }
+body.night .s10 { animation-delay: 0.65s; }
+body.night .s12 { animation-delay: 1s; }
+
+body.night .back-hills {
+  background: #273c37;
+}
+
+body.night .city-back span {
+  background: #233652;
+}
+
+body.night .city-front span {
+  background: #16253b;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+body.night .city-front span::before {
+  background:
+    linear-gradient(90deg,
+      transparent 0 12%, rgba(246, 201, 125, 0.8) 12% 17%, transparent 17% 40%,
+      rgba(246, 201, 125, 0.8) 40% 45%, transparent 45% 68%,
+      rgba(246, 201, 125, 0.8) 68% 73%, transparent 73% 100%),
+    linear-gradient(180deg,
+      transparent 0 12%, rgba(246, 201, 125, 0.78) 12% 17%, transparent 17% 40%,
+      rgba(246, 201, 125, 0.78) 40% 45%, transparent 45% 68%,
+      rgba(246, 201, 125, 0.78) 68% 73%, transparent 73% 100%);
+  opacity: 0.7;
+}
+
+body.night .lamp-head {
+  background: #20232a;
+}
+
+body.night .lamp-glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.night .lamp-hint {
+  opacity: 0.22;
+}
+
+body.night .road {
+  background: #1f232b;
+}
+
+body.night .road-edge {
+  background: rgba(172, 160, 124, 0.45);
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.45;
+    transform: scale(0.9) rotate(12deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.35) rotate(42deg);
+  }
+}
+
+@keyframes nudge {
+  0%, 100% {
+    transform: translateY(0) scale(0.95);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-0.25rem) scale(1.1);
+    opacity: 0.95;
+  }
+}
+
+@media (max-width: 800px) {
+  .sun,
+  .moon {
+    width: 6.8rem;
+    height: 6.8rem;
+    right: 8vw;
+  }
+
+  .lamp {
+    left: 56%;
+    width: 7rem;
+    height: 54vh;
+  }
+
+  .road {
+    height: 22vh;
+  }
+
+  .road-edge {
+    bottom: 19vh;
+  }
+}
