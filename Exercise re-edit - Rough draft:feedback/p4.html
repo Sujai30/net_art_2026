@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corridor: The Turning</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body style="background:#334d70;">
+  <div id="counter"></div>
+  <div class="frame">
+    <h2>The Turning</h2>
+    <div id="content"></div>
+    <p>A narrow flight of stairs descends on my left. A faint smell of disinfectant rises up. If I take another pill I will go down there; if not, I will keep to the main path.</p>
+    <nav>
+      <button class="pill" onclick="takePill('memory4.html')">Go down the stairs</button>
+      <a href="p4f.html" class="button">Stay on the level</a>
+    </nav>
+  </div>
+  <script>
+    (function() {
+      const paragraphs = [
+        `I feel like I am walking into my own emptiness. Without any memories to weigh me down, the stairs look like a descent into oblivion.`,
+        `One memory glows behind me like a distant lamp. The stairs descend into darkness but I am not as frightened as before.`,
+        `Two memories: I know that pain and comfort can coexist. The smell of disinfectant reminds me of something I haven't yet recalled.`,
+        `Three memories cling to me. I descend the stairs in my mind while continuing forward. Each step feels like a heartbeat.`,
+        `Four memories: The corridor is beginning to feel like a hospital hallway. I brace myself for what comes next.`,
+        `Five memories: There is a peace to the sterility. I imagine a white bed and soft sheets.`,
+        `Six memories: I am almost ready for what lies below. Part of me wants to descend and rest.`,
+        `Seven memories: I have already been here before. The descent is no longer frightening.`
+      ];
+      const idx = Math.min(getPillsTaken(), paragraphs.length - 1);
+      document.getElementById('content').innerHTML = `<p>${paragraphs[idx]}</p>`;
+    })();
+  </script>
+</body>
+</html>

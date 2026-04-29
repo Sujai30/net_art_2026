@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corridor: The Echo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body style="background:#273a59;">
+  <div id="counter"></div>
+  <div class="frame">
+    <h2>The Echo</h2>
+    <div id="content"></div>
+    <p>There is another door half ajar. I feel the pull of a memory behind it. I can open it and swallow another pill, or I can leave it shut and carry on.</p>
+    <nav>
+      <button class="pill" onclick="takePill('memory3.html')">Open the door</button>
+      <a href="p3f.html" class="button">Walk past it</a>
+    </nav>
+  </div>
+  <script>
+    (function() {
+      const paragraphs = [
+        `My footsteps echo down the corridor. I have yet to carry any memory with me. The walls here are as dark as they were at the start, and my breath fogs the air.`,
+        `One memory sits warm in my stomach. The corridor feels narrower and I am aware of the beating of my heart.`,
+        `Two memories soften the echoes. Shadows on the walls look like faces I almost recognise.`,
+        `With three memories inside me, I hear whispers that sound like my own voice comforting me as a child.`,
+        `Four memories: The hallway bends gently and there are pictures I cannot quite make out.`,
+        `Five memories: I swear I hear laughter ahead. The darkness is giving way to blue.`,
+        `Six memories: The echoes are gone. It feels like walking through thick water toward light.`,
+        `Seven memories: I am full. The corridor welcomes me like a friend I have been avoiding.`
+      ];
+      const idx = Math.min(getPillsTaken(), paragraphs.length - 1);
+      document.getElementById('content').innerHTML = `<p>${paragraphs[idx]}</p>`;
+    })();
+  </script>
+</body>
+</html>

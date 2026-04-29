@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corridor: The Platform</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body style="background:#1e2d44;">
+  <div id="counter"></div>
+  <div class="frame">
+    <h2>The Platform</h2>
+    <div id="content">
+      <!-- Dynamic content based on pills taken will be inserted here -->
+    </div>
+    <p>I can swallow another pill here and let another memory pour over me, or I can keep walking deeper into the corridor.</p>
+    <nav>
+      <button class="pill" onclick="takePill('memory2.html')">Take a pill</button>
+      <a href="p2f.html" class="button">Keep walking</a>
+    </nav>
+  </div>
+  <script>
+    (function() {
+      const paragraphs = [
+        `The platform is empty. I have ignored the phone and the ringing is now a memory that never existed. The dark feels colder when I have nothing inside me.`,
+        `The platform seems smaller than before. The voice on the line still echoes in my skull, warm and heavy. The darkness has the shape of someone who once held me.`,
+        `With two memories tucked under my tongue, the platform hums like an old friend. I can almost imagine trains arriving, destinations announced.`,
+        `My mind is crowded with three different scenes. They stack like transparencies. The platform, the phone, and something I am about to remember next all blur together.`,
+        `By the time I have taken four pills there is more warmth than coldness. The platform feels almost safe. I know I have stepped here before.`,
+        `Five memories lend the air a softness. The edges of the platform blur and I feel I could float.`,
+        `Six memories: I am not afraid. The platform has become a bridge.`,
+        `Seven memories: Every sound is familiar. The platform is a threshold I am almost ready to cross.`
+      ];
+      const taken = getPillsTaken();
+      const idx = Math.min(taken, paragraphs.length - 1);
+      document.getElementById('content').innerHTML = `<p>${paragraphs[idx]}</p>`;
+    })();
+  </script>
+</body>
+</html>

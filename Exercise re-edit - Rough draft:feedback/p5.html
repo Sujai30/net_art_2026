@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corridor: The Ledger</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body style="background:#3d6087;">
+  <div id="counter"></div>
+  <div class="frame">
+    <h2>The Ledger</h2>
+    <div id="content"></div>
+    <p>A desk sits in the middle of the hallway, covered in papers and receipts. I can sit down and sift through them with another pill, or I can pass by without touching anything.</p>
+    <nav>
+      <button class="pill" onclick="takePill('memory5.html')">Sit and read</button>
+      <a href="p5f.html" class="button">Move on</a>
+    </nav>
+  </div>
+  <script>
+    (function() {
+      const paragraphs = [
+        `Every door looks the same and my pockets are full of pills. I wonder if I should start taking them before it's too late.`,
+        `One memory burns inside me. It makes me curious about the papers on the desk. Who left them here?`,
+        `Two memories add weight to the moment. I feel like I have been at a desk like this, noting something I shouldn't have.`,
+        `Three memories: The numbers start to make sense even before I sit down. I know there is a pattern somewhere.`,
+        `Four memories: I remember more than I wanted to. The pages smell like ink and anxiety.`,
+        `Five memories: The noise of the corridor fades. I could lose myself in these numbers.`,
+        `Six memories: I see my own handwriting among the receipts. A letter catches my eye.`,
+        `Seven memories: I have almost all the context I need. The desk is simply a mirror of my choices.`
+      ];
+      const idx = Math.min(getPillsTaken(), paragraphs.length - 1);
+      document.getElementById('content').innerHTML = `<p>${paragraphs[idx]}</p>`;
+    })();
+  </script>
+</body>
+</html>

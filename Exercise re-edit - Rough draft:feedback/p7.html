@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corridor: The Letter</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body style="background:#5c8daf;">
+  <div id="counter"></div>
+  <div class="frame">
+    <h2>The Letter</h2>
+    <div id="content"></div>
+    <p>There is an envelope on the floor, sealed with wax. My name is written across it. I can open it with a pill, or I can keep it closed and move on.</p>
+    <nav>
+      <button class="pill" onclick="takePill('memory7.html')">Open the letter</button>
+      <a href="p7f.html" class="button">Leave it</a>
+    </nav>
+  </div>
+  <script>
+    (function() {
+      const paragraphs = [
+        `I wander blindly through the corridor. Seven pills weigh down my pocket but I haven't touched them. I fear what might be in an unopened letter.`,
+        `One memory: I doubt my ability to read the truth. The envelope feels heavier than its weight.`,
+        `Two memories: Hope has crept in. Maybe the letter holds an apology.`,
+        `Three memories: Fear begins to fade. I want to know if someone cared enough to explain.`,
+        `Four memories: Love surfaces. I remember how letters used to smell like perfume.`,
+        `Five memories: Grief sits with me. I fear the letter will reopen wounds.`,
+        `Six memories: Acceptance grows. Whether I open the letter or not, the past has already happened.`,
+        `Seven memories: I am ready. Whatever the letter contains, it will not change what I have already understood.`
+      ];
+      const idx = Math.min(getPillsTaken(), paragraphs.length - 1);
+      document.getElementById('content').innerHTML = `<p>${paragraphs[idx]}</p>`;
+    })();
+  </script>
+</body>
+</html>

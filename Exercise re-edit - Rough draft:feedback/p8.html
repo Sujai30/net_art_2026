@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corridor: The Door</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body style="background:#98abc7; color:#2a2a2a;">
+  <div id="counter"></div>
+  <div class="frame" style="background: rgba(0, 187, 255, 0.6); color:#2a2a2a;">
+    <h2>The Door</h2>
+    <div id="content"></div>
+    <p>The last door stands before me. There are no more pills to take here. Whether I have swallowed none or all, what lies beyond will be the same; only I will be different.</p>
+    <nav>
+      <a href="ending.html" class="button end-button">Step through</a>
+    </nav>
+  </div>
+  <script>
+    (function() {
+      const paragraphs = [
+        `I know nothing. My hands shake as I reach for the handle. I am stepping into the unknown with empty pockets.`,
+        `I know one thing. It is not enough, but it is something. I will carry it with me like a charm.`,
+        `Two memories weigh in my hands. They are like stones I cannot put down, but I walk forward anyway.`,
+        `Three memories: I am half‑full, half‑hungry. I have learned that some answers make more questions.`,
+        `Four memories: I feel heavy and light all at once. Regret and relief knot together inside me.`,
+        `Five memories: I have almost everything I need to understand my life. The door looks less like an ending and more like a beginning.`,
+        `Six memories: I have almost all of myself. The unknown feels familiar.`,
+        `Seven memories: There is nothing left to fear. I have seen the worst and the best of my life. I turn the handle with steady hands.`
+      ];
+      const idx = Math.min(getPillsTaken(), paragraphs.length - 1);
+      document.getElementById('content').innerHTML = `<p>${paragraphs[idx]}</p>`;
+    })();
+  </script>
+</body>
+</html>
