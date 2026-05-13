@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corridor: The Mirror</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body style="background:#4a769b;">
+  <div id="counter"></div>
+  <div class="frame">
+    <h2>The Mirror</h2>
+    <div id="content"></div>
+    <p>A tall mirror leans against the wall. Its surface is clouded, but I can see movement behind the fog. I can wipe it clean with a pill, or I can walk by without looking at myself.</p>
+    <nav>
+      <button class="pill" onclick="takePill('memory6.html')">Wipe the mirror</button>
+      <a href="p6f.html" class="button">Avert my eyes</a>
+    </nav>
+  </div>
+  <script>
+    (function() {
+      const paragraphs = [
+        `I am still untouched by memory. The mirror shows only darkness.`,
+        `One memory gives my reflection a faint outline. I think I see my younger self.`,
+        `Two memories: The mirror shows flickers of birthdays and funerals.`,
+        `Three memories: I see my sister’s eyes in my own, full of questions.`,
+        `Four memories: The mirror reveals betrayals I have both committed and endured.`,
+        `Five memories: My face is not mine alone—it holds my father's quiet and my mother's grief.`,
+        `Six memories: The mirror fog lifts almost completely. I see forgiveness in my own gaze.`,
+        `Seven memories: The mirror becomes a window. There is a garden on the other side.`
+      ];
+      const idx = Math.min(getPillsTaken(), paragraphs.length - 1);
+      document.getElementById('content').innerHTML = `<p>${paragraphs[idx]}</p>`;
+    })();
+  </script>
+</body>
+</html>

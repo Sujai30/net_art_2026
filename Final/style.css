@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.6;
+  color: #e8e4da;
+}
+
+/* Each page sets its own background colour inline to gradually lighten the mood. */
+
+.frame {
+  width: 85%;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.frame img.bg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  filter: grayscale(100%) contrast(120%);
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 2.0rem;
+  margin-top: 0;
+  color: #cdb27c;
+}
+
+.highlight {
+  color: #bf5e5e;
+  font-weight: bold;
+}
+
+nav {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+a.button, button {
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: #e8e4da;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+
+a.button:hover, button:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* Special button styling for the final stretch of the journey. */
+.end-button {
+  border-color: #e6d8a3;
+  background: rgba(230,216,163,0.4);
+  color: #3a2f1a;
+}
+.end-button:hover {
+  background: rgba(184,152,95,0.3);
+  border-color: #b8985f;
+}
+
+/* Pill button styling */
+button.pill {
+  border-color: #ddb25f;
+  background: rgba(221,178,95,0.2);
+}
+
+button.pill:hover {
+  background: rgba(221,178,95,0.3);
+}
+
+/* Fixed pill counter */
+#counter {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #9fa6b2;
+  z-index: 9990;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.5s, border-color 0.5s, box-shadow 0.5s;
+}
+
+/* ── Atmospheric enhancements ── */
+
+body {
+  animation: pageEnter 0.85s ease;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* CRT scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0,0,0,0.06) 3px,
+    rgba(0,0,0,0.06) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 101;
+}
+
+/* Text readability */
+p {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.65);
+}
+
+/* Glitch overlay */
+#glitch-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+}
+
+#glitch-layer.active {
+  opacity: 1;
+  animation: glitchFlicker 0.5s steps(1) forwards;
+}
+
+@keyframes glitchFlicker {
+  0%   { background: linear-gradient(transparent 18%, rgba(0,200,255,0.12) 19%, transparent 21%); transform: translateX(-3px); }
+  14%  { background: linear-gradient(transparent 52%, rgba(255,0,100,0.09) 53%, transparent 55%); transform: translateX(4px); }
+  28%  { background: linear-gradient(transparent 72%, rgba(0,200,255,0.11) 73%, transparent 75%); transform: translateX(-2px); }
+  42%  { background: none; transform: translateX(3px); }
+  57%  { background: linear-gradient(transparent 8%, rgba(255,0,100,0.07) 9%, transparent 11%); transform: translateX(0); }
+  71%  { background: none; transform: translateX(-4px); }
+  85%  { background: linear-gradient(transparent 38%, rgba(0,200,255,0.09) 39%, transparent 41%); transform: translateX(2px); }
+  100% { background: none; transform: translateX(0); opacity: 0; }
+}
+
+/* Glitch text on h2 */
+@keyframes textGlitch {
+  0%   { text-shadow: -3px 0 rgba(255,0,100,0.85), 3px 0 rgba(0,210,255,0.85); }
+  25%  { text-shadow: 3px 0 rgba(255,0,100,0.85), -3px 0 rgba(0,210,255,0.85); letter-spacing: 0.07em; }
+  50%  { text-shadow: -2px 0 rgba(255,0,100,0.5); letter-spacing: normal; }
+  75%  { text-shadow: 1px 0 rgba(0,210,255,0.5); letter-spacing: 0.03em; }
+  100% { text-shadow: none; letter-spacing: normal; }
+}
+
+h2.glitching {
+  animation: textGlitch 0.1s steps(1) 6;
+}
+
+/* Counter urgent pulse */
+@keyframes counterPulse {
+  0%, 100% { border-color: rgba(255,255,255,0.3); color: #9fa6b2; box-shadow: none; }
+  50%       { border-color: rgba(221,178,95,0.8);  color: #ddb25f; box-shadow: 0 0 10px rgba(221,178,95,0.4); }
+}
+
+#counter.urgent {
+  animation: counterPulse 2s ease-in-out infinite;
+}
+
+/* Pill button glow on hover */
+button.pill {
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+button.pill:hover {
+  box-shadow: 0 0 14px rgba(221,178,95,0.5);
+}
+
+/* Frame warm transition */
+.frame {
+  transition: box-shadow 2s ease, border-color 2s ease;
+}
